@@ -28,7 +28,8 @@ export default class App extends Component{
     let numeroAleatorio = Math.floor(Math.random() * this.frases.length);
 
     this.setState({
-      textoFrase: this.frases[numeroAleatorio]
+      textoFrase:'"' +  this.frases[numeroAleatorio] + '"',
+      img: require("./src/biscoitoAberto.png")
     })
 
   }
