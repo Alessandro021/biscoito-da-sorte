@@ -4,19 +4,48 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 
 export default class App extends Component{
 
+  constructor(props){
+    super(props);
+    this.state = {
+      textoFrase: "",
+      img: require("./src/biscoito.png")
+    };
+
+    this.frases = [
+      "Siga os bons e aprenda com eles.",
+      "O bom-senso vale mais do que muito conhecimento.",
+      "o riso é a maior distância entre duas pessoas.",
+      "Deixe de lado as preocupações e seja feliz.",
+      "Realize o óbvio, penser no improvavel e conquiste o impossivel.",
+      "Acredite em milagres, mas não dependa deles.",
+      "A maior barreira parea o sucesso é o medo do fracaso."
+    ];
+
+    this.quebraBiscoito = this.quebraBiscoito.bind(this);
+  }
+
+  quebraBiscoito(){
+    let numeroAleatorio = Math.floor(Math.random() * this.frases.length);
+
+    this.setState({
+      textoFrase: this.frases[numeroAleatorio]
+    })
+
+  }
+
   render(){
     return (
         <View style={styles.container}>
           <StatusBar style="auto" />
 
           <Image
-            source={require("./src/biscoito.png")}
+            source={this.state.img}
             style={styles.img}
           />
 
-          <Text style={styles.textoFrase}> "Alguma frase aqui" </Text>
+          <Text style={styles.textoFrase}> {this.state.textoFrase} </Text>
 
-          <TouchableOpacity style={styles.botao}>
+          <TouchableOpacity style={styles.botao} onPress={this.quebraBiscoito}>
             <View style={styles.btnArea}>
               <Text style={styles.btnTexto}> Abrir Biscoito </Text>
             </View>
